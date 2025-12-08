@@ -150,14 +150,13 @@ button {
 }
 
 /* ===============================================
-   HERO - Qrates Editorial Style
+   HERO - Qrates Split-Screen Style with Rotated Image
    =============================================== */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--space-xl) var(--space-md);
+  padding: calc(var(--space-xl) + 60px) var(--space-md) var(--space-xl);
   background: var(--black);
   position: relative;
   overflow: hidden;
@@ -173,7 +172,8 @@ button {
   background: var(--yellow);
   border-radius: 50%;
   filter: blur(150px);
-  opacity: 0.3;
+  opacity: 0.2;
+  pointer-events: none;
 }
 
 .hero::after {
@@ -186,25 +186,127 @@ button {
   background: var(--purple);
   border-radius: 50%;
   filter: blur(150px);
-  opacity: 0.2;
+  opacity: 0.15;
+  pointer-events: none;
 }
 
-.hero-container {
-  text-align: center;
+/* Split-Screen Layout */
+.hero-split {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
   position: relative;
   z-index: 1;
 }
 
+.hero-content {
+  text-align: left;
+}
+
+/* Qrates Scattered Images Layout */
+.hero-images-scattered {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scattered-image {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
+  border: 2px solid var(--yellow);
+  /* Yellow border on black bg */
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.scattered-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Image 1 - Top right, tilted right */
+.scattered-image.image-1 {
+  width: 320px;
+  height: 400px;
+  top: 0;
+  right: 0;
+  transform: rotate(5deg);
+  z-index: 2;
+}
+
+.scattered-image.image-1:hover {
+  transform: rotate(2deg) scale(1.02);
+  box-shadow:
+    0 35px 80px rgba(0, 0, 0, 0.4),
+    0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Image 2 - Bottom left, tilted left */
+.scattered-image.image-2 {
+  width: 280px;
+  height: 350px;
+  bottom: 0;
+  left: 20px;
+  transform: rotate(-8deg);
+  z-index: 3;
+}
+
+.scattered-image.image-2 img {
+  object-position: top center;
+}
+
+.scattered-image.image-2:hover {
+  transform: rotate(-4deg) scale(1.02);
+  box-shadow:
+    0 35px 80px rgba(0, 0, 0, 0.4),
+    0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Hero CTA Button */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: 1rem 2rem;
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 100px;
+  transition: all var(--duration) var(--ease);
+}
+
+.hero-cta:hover {
+  background: var(--purple);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(226, 128, 255, 0.3);
+}
+
 .hero-badge {
   display: inline-block;
-  padding: 0.5rem 1.5rem;
-  background: var(--gray-dark);
-  border: 1px solid var(--gray-border);
-  border-radius: 100px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--gray);
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
   font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  color: var(--olive);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--gray);
   margin-bottom: var(--space-md);
 }
 
@@ -285,7 +387,8 @@ button {
   justify-content: space-between;
   overflow: hidden;
   transition: transform var(--duration) var(--ease);
-  border-radius: 16px;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
 }
 
 .why-card:hover {
@@ -360,7 +463,8 @@ button {
   padding: var(--space-md);
   background: var(--gray-dark);
   border: 1px solid var(--gray-border);
-  border-radius: 12px;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
   text-align: center;
   transition: all var(--duration) var(--ease);
 }
@@ -559,7 +663,8 @@ button {
   padding: var(--space-md);
   background: var(--gray-dark);
   border: 1px solid var(--gray-border);
-  border-radius: 16px;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
   transition: all var(--duration) var(--ease);
 }
 
@@ -619,7 +724,8 @@ button {
   padding: 0.25rem 0.75rem;
   background: rgba(255, 248, 4, 0.1);
   border: 1px solid rgba(255, 248, 4, 0.3);
-  border-radius: 100px;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--yellow);
@@ -634,7 +740,8 @@ button {
 .project-stack span {
   padding: 0.25rem 0.75rem;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 100px;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
   font-size: 0.7rem;
   color: var(--gray);
 }
@@ -664,7 +771,8 @@ button {
 .leadership-card {
   padding: var(--space-md);
   background: var(--gray-light);
-  border-radius: 12px;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
   transition: all var(--duration) var(--ease);
 }
 
@@ -732,7 +840,8 @@ button {
   padding: 0.5rem 1rem;
   background: var(--gray-dark);
   border: 1px solid var(--gray-border);
-  border-radius: 100px;
+  border-radius: 0;
+  /* Sharp corners - Qrates style */
   font-size: 0.875rem;
   color: var(--white);
   transition: all var(--duration) var(--ease);
@@ -783,6 +892,102 @@ button {
 .education-year {
   font-size: 1rem;
   color: var(--gray);
+}
+
+/* Education Layout - Split with Scattered Photos */
+.education-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.education-text {
+  padding-right: var(--space-lg);
+}
+
+.education-details {
+  margin-top: var(--space-md);
+}
+
+.education-degree {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--purple);
+  margin-bottom: var(--space-xs);
+}
+
+.education-school {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.education-year {
+  font-size: 1rem;
+  color: var(--gray);
+}
+
+/* Scattered Photo Gallery */
+.education-gallery {
+  position: relative;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.edu-photo {
+  position: absolute;
+  overflow: hidden;
+  border: 1px solid var(--black);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.15),
+    0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+
+.edu-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Photo 1 - Top right, tilted */
+.edu-photo-1 {
+  width: 280px;
+  height: 320px;
+  top: 20px;
+  right: 0;
+  transform: rotate(4deg);
+  z-index: 2;
+}
+
+.edu-photo-1:hover {
+  transform: rotate(1deg) scale(1.03);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.2),
+    0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Photo 2 - Bottom left, tilted opposite */
+.edu-photo-2 {
+  width: 260px;
+  height: 300px;
+  bottom: 20px;
+  left: 20px;
+  transform: rotate(-6deg);
+  z-index: 3;
+}
+
+.edu-photo-2:hover {
+  transform: rotate(-2deg) scale(1.03);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.2),
+    0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 /* ===============================================
@@ -1004,6 +1209,29 @@ button {
   .achievements-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Hero tablet adjustment */
+  .hero-split {
+    gap: var(--space-md);
+  }
+
+  .hero-images-scattered {
+    height: 500px;
+  }
+
+  .scattered-image.image-1 {
+    width: 260px;
+    height: 320px;
+  }
+
+  .scattered-image.image-2 {
+    width: 220px;
+    height: 280px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 8vw, 6rem);
+  }
 }
 
 @media (max-width: 768px) {
@@ -1012,7 +1240,49 @@ button {
   }
 
   .hero {
-    padding: var(--space-lg) var(--space-sm);
+    padding: calc(var(--space-lg) + 60px) var(--space-sm) var(--space-lg);
+  }
+
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    text-align: center;
+  }
+
+  .hero-content {
+    text-align: center;
+    order: 2;
+  }
+
+  /* Scattered images responsive */
+  .hero-images-scattered {
+    order: 1;
+    height: 400px;
+    width: 100%;
+  }
+
+  .scattered-image.image-1 {
+    width: 200px;
+    height: 250px;
+    top: 0;
+    right: 10%;
+    transform: rotate(4deg);
+  }
+
+  .scattered-image.image-2 {
+    width: 180px;
+    height: 220px;
+    bottom: 20px;
+    left: 10%;
+    transform: rotate(-6deg);
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
   }
 
   .why-card {
@@ -1062,5 +1332,35 @@ button {
 
   .achievement-scholarship {
     grid-column: span 1;
+  }
+
+  /* Education gallery responsive */
+  .education-layout {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .education-text {
+    padding-right: 0;
+  }
+
+  .education-gallery {
+    height: 400px;
+  }
+
+  .edu-photo-1 {
+    width: 200px;
+    height: 230px;
+    top: 20px;
+    right: 15%;
+    transform: rotate(3deg);
+  }
+
+  .edu-photo-2 {
+    width: 180px;
+    height: 210px;
+    bottom: 20px;
+    left: 15%;
+    transform: rotate(-5deg);
   }
 }
