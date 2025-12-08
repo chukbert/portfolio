@@ -438,65 +438,91 @@ button {
 }
 
 /* ===============================================
-   ACHIEVEMENTS SECTION (BLACK)
+   ACHIEVEMENTS SECTION - 5-Column Qrates Style
    =============================================== */
 .achievements-section {
-  padding: var(--space-xl) var(--space-md);
+  padding: 0;
 }
 
 .achievements-container {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
 }
 
 .achievements-header {
-  margin-bottom: var(--space-lg);
+  padding: var(--space-lg) var(--space-md);
+  background: var(--black);
+  text-align: center;
 }
 
-.achievements-grid {
+/* 5-Column Cards Grid */
+.achievements-cards {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: var(--space-sm);
 }
 
-.achievement-card {
-  padding: var(--space-md);
-  background: var(--gray-dark);
-  border: 1px solid var(--gray-border);
-  border-radius: 0;
-  /* Sharp corners - Qrates style */
+.achieve-card {
+  padding: var(--space-lg);
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   text-align: center;
-  transition: all var(--duration) var(--ease);
+  transition: transform var(--duration) var(--ease);
 }
 
-.achievement-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--yellow);
+.achieve-card:hover {
+  transform: scale(0.98);
 }
 
-.achievement-highlight {
-  background: linear-gradient(135deg, rgba(255, 248, 4, 0.1), rgba(226, 128, 255, 0.1));
-  border-color: var(--yellow);
+.achieve-badge {
+  display: inline-block;
+  width: fit-content;
+  margin: 0 auto var(--space-md);
+  padding: 0.4rem 1rem;
+  border: 1px solid currentColor;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
 }
 
-.achievement-scholarship {
-  grid-column: span 2;
-}
-
-.achievement-icon {
-  font-size: 2.5rem;
+.achieve-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
   margin-bottom: var(--space-sm);
 }
 
-.achievement-card h3 {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: var(--space-xs);
+.achieve-card p {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  line-height: 1.5;
 }
 
-.achievement-card p {
-  font-size: 0.875rem;
-  color: var(--gray);
+/* Color Variations */
+.achieve-yellow {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+.achieve-purple {
+  background: var(--purple);
+  color: var(--black);
+}
+
+.achieve-olive {
+  background: var(--olive);
+  color: var(--white);
+}
+
+.achieve-black {
+  background: var(--black);
+  color: var(--white);
+}
+
+.achieve-white {
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
 }
 
 /* ===============================================
@@ -1168,12 +1194,13 @@ button {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .achievements-grid {
+  /* Achievement cards responsive */
+  .achievements-cards {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .achievement-scholarship {
-    grid-column: span 1;
+  .achieve-card {
+    min-height: 280px;
   }
 }
 
@@ -1206,7 +1233,7 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .achievements-grid {
+  .achievements-cards {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1326,12 +1353,13 @@ button {
     grid-template-columns: 1fr;
   }
 
-  .achievements-grid {
+  .achievements-cards {
     grid-template-columns: 1fr;
   }
 
-  .achievement-scholarship {
-    grid-column: span 1;
+  .achieve-card {
+    min-height: 200px;
+    padding: var(--space-md);
   }
 
   /* Education gallery responsive */
