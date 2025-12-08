@@ -250,7 +250,7 @@ button {
 
 .scattered-image.image-1 img {
   border: 3px solid var(--yellow);
-  box-shadow: 6px 6px 0 0 var(--purple);
+  box-shadow: 4px 6px 0 0 var(--purple);
 }
 
 .scattered-image.image-1:hover {
@@ -268,7 +268,7 @@ button {
 
 .scattered-image.image-2 img {
   border: 3px solid var(--purple);
-  box-shadow: 6px 6px 0 0 var(--black);
+  box-shadow: 4px 6px 0 0 var(--black);
   object-position: top center;
 }
 
@@ -1211,7 +1211,7 @@ button {
 /* Scattered Photo Gallery */
 .education-gallery {
   position: relative;
-  height: 500px;
+  height: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1219,12 +1219,8 @@ button {
 
 .edu-photo {
   position: absolute;
-  overflow: hidden;
-  border: 1px solid var(--black);
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.15),
-    0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+  overflow: visible;
+  transition: transform 0.5s var(--ease);
 }
 
 .edu-photo img {
@@ -1234,38 +1230,40 @@ button {
   display: block;
 }
 
-/* Photo 1 - Top right, tilted */
+/* Photo 1 - Main photo with yellow border */
 .edu-photo-1 {
-  width: 280px;
-  height: 320px;
+  width: 300px;
+  height: 350px;
   top: 20px;
-  right: 0;
-  transform: rotate(4deg);
-  z-index: 2;
-}
-
-.edu-photo-1:hover {
-  transform: rotate(1deg) scale(1.03);
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.2),
-    0 12px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Photo 2 - Bottom left, tilted opposite */
-.edu-photo-2 {
-  width: 260px;
-  height: 300px;
-  bottom: 20px;
-  left: 20px;
-  transform: rotate(-6deg);
+  right: 20px;
   z-index: 3;
 }
 
+.edu-photo-1 img {
+  border: 3px solid var(--yellow);
+  box-shadow: 4px 6px 0 0 var(--purple);
+}
+
+.edu-photo-1:hover {
+  transform: translateY(-5px);
+}
+
+/* Photo 2 - Second photo with purple border */
+.edu-photo-2 {
+  width: 260px;
+  height: 320px;
+  bottom: 30px;
+  left: 40px;
+  z-index: 2;
+}
+
+.edu-photo-2 img {
+  border: 3px solid var(--purple);
+  box-shadow: 4px 6px 0 0 var(--black);
+}
+
 .edu-photo-2:hover {
-  transform: rotate(-2deg) scale(1.03);
-  box-shadow:
-    0 30px 60px rgba(0, 0, 0, 0.2),
-    0 12px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
 }
 
 /* ===============================================
