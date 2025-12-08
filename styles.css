@@ -370,7 +370,7 @@ button {
 }
 
 /* ===============================================
-   WHY SECTION - Grid Cards (BLACK background)
+   WHY SECTION - Dashboard Hero Split Layout
    =============================================== */
 .why-section {
   padding: var(--space-xl) var(--space-md);
@@ -380,6 +380,17 @@ button {
 .why-container {
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.why-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+
+.why-content {
+  padding-right: var(--space-md);
 }
 
 .why-header {
@@ -400,92 +411,154 @@ button {
   color: var(--yellow);
 }
 
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+/* Why List - Readable Items */
+.why-list {
+  display: flex;
+  flex-direction: column;
   gap: var(--space-md);
 }
 
-.why-card {
-  position: relative;
-  padding: var(--space-lg);
-  min-height: 260px;
+.why-item {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-left: 3px solid var(--purple);
+  background: rgba(255, 255, 255, 0.02);
   transition: all var(--duration) var(--ease);
-  border: 2px solid transparent;
 }
 
-.why-card:hover {
-  transform: translateY(-4px);
+.why-item:hover {
+  border-left-color: var(--yellow);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(8px);
 }
 
-.why-card-yellow {
-  background: var(--yellow);
-  color: var(--black);
-  border-color: var(--black);
-  box-shadow: 6px 6px 0 0 var(--purple);
-}
-
-.why-card-yellow:hover {
-  box-shadow: 8px 8px 0 0 var(--purple);
-}
-
-.why-card-purple {
-  background: var(--purple);
-  color: var(--black);
-  border-color: var(--black);
-  box-shadow: 6px 6px 0 0 var(--yellow);
-}
-
-.why-card-purple:hover {
-  box-shadow: 8px 8px 0 0 var(--yellow);
-}
-
-.why-card-olive {
-  background: var(--olive);
-  color: var(--white);
-  border-color: var(--black);
-  box-shadow: 6px 6px 0 0 var(--black);
-}
-
-.why-card-olive:hover {
-  box-shadow: 8px 8px 0 0 var(--black);
-}
-
-.why-card-black {
-  background: var(--gray-dark);
-  color: var(--white);
-  border-color: var(--purple);
-  box-shadow: 6px 6px 0 0 var(--purple);
-}
-
-.why-card-black:hover {
-  box-shadow: 8px 8px 0 0 var(--purple);
-}
-
-.why-card h3 {
+.why-item-number {
   font-size: 1.5rem;
-  font-weight: 800;
-  margin-bottom: var(--space-sm);
+  font-weight: 900;
+  color: var(--purple);
+  min-width: 40px;
 }
 
-.why-card p {
+.why-item:hover .why-item-number {
+  color: var(--yellow);
+}
+
+.why-item-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.why-item-content p {
   font-size: 1rem;
-  opacity: 0.85;
+  color: var(--gray);
   line-height: 1.6;
 }
 
-.why-card-number {
-  position: absolute;
-  bottom: var(--space-sm);
-  right: var(--space-md);
-  font-size: 5rem;
-  font-weight: 900;
-  opacity: 0.12;
-  line-height: 1;
+/* Metric Highlights */
+.why-item-content .metric {
+  background: var(--yellow);
+  color: var(--black);
+  padding: 0.1em 0.4em;
+  font-weight: 700;
+}
+
+/* Terminal Decoration */
+.why-terminal {
+  background: #1e1e2e;
+  border: 2px solid var(--purple);
+  box-shadow: 8px 8px 0 0 var(--yellow);
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: #2d2d3d;
+  padding: 0.75rem var(--space-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terminal-title {
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.terminal-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.term-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.term-yellow {
+  background: var(--yellow);
+}
+
+.term-green {
+  background: #a6e3a1;
+}
+
+.term-gray {
+  background: var(--gray);
+}
+
+.terminal-body {
+  padding: var(--space-md);
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.term-line {
+  margin-bottom: 0.5rem;
+}
+
+.term-prompt {
+  color: #89b4fa;
+}
+
+.term-output {
+  color: var(--white);
+  padding-left: 1rem;
+}
+
+.term-output.dim {
+  color: var(--gray);
+  font-size: 0.8rem;
+  margin-bottom: var(--space-sm);
+}
+
+.term-code {
+  color: #f9e2af;
+  padding-left: 1rem;
+  margin: var(--space-sm) 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.term-cursor {
+  color: var(--yellow);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Stats Boxes */
