@@ -1455,10 +1455,6 @@ button {
 }
 
 @media (max-width: 1024px) {
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-
   .footer-main {
     grid-template-columns: 1fr;
     gap: var(--space-md);
@@ -1497,8 +1493,8 @@ button {
   }
 
   .scattered-image.image-1 {
-    width: 260px;
-    height: 320px;
+    width: 280px;
+    height: 350px;
   }
 
   .scattered-image.image-2 {
@@ -1508,6 +1504,21 @@ button {
 
   .hero-title {
     font-size: clamp(2.5rem, 8vw, 6rem);
+  }
+
+  /* Education tablet */
+  .education-layout {
+    gap: var(--space-md);
+  }
+
+  .edu-photo-1 {
+    width: 250px;
+    height: 300px;
+  }
+
+  .edu-photo-2 {
+    width: 220px;
+    height: 270px;
   }
 }
 
@@ -1531,40 +1542,94 @@ button {
     order: 2;
   }
 
+  .hero-subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* Scattered images responsive */
   .hero-images-scattered {
     order: 1;
-    height: 400px;
+    height: 350px;
     width: 100%;
   }
 
   .scattered-image.image-1 {
-    width: 200px;
-    height: 250px;
+    width: 180px;
+    height: 230px;
     top: 0;
-    right: 10%;
-    transform: rotate(4deg);
+    right: 5%;
   }
 
   .scattered-image.image-2 {
-    width: 180px;
-    height: 220px;
-    bottom: 20px;
-    left: 10%;
-    transform: rotate(-6deg);
+    width: 160px;
+    height: 200px;
+    bottom: 10px;
+    left: 5%;
   }
 
   .hero-title {
-    font-size: clamp(2.5rem, 10vw, 4rem);
+    font-size: clamp(2rem, 10vw, 3.5rem);
   }
 
   .hero-subtitle {
     font-size: 1rem;
   }
 
-  .why-card {
-    min-height: 220px;
-    padding: var(--space-md);
+  /* Why Section Mobile */
+  .why-section {
+    padding: var(--space-lg) var(--space-sm);
+  }
+
+  .why-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-xs);
+  }
+
+  .why-list {
+    gap: var(--space-sm);
+  }
+
+  .why-item {
+    padding: var(--space-sm);
+  }
+
+  .why-item-number {
+    font-size: 1.25rem;
+    min-width: 30px;
+  }
+
+  .why-item-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .why-item-content p {
+    font-size: 0.9rem;
+  }
+
+  .why-stats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .stat-box {
+    padding: var(--space-sm) var(--space-md);
+    min-width: 100px;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.6rem;
   }
 
   .accordion-trigger {
@@ -1623,22 +1688,20 @@ button {
   }
 
   .education-gallery {
-    height: 400px;
+    height: 350px;
   }
 
   .edu-photo-1 {
-    width: 200px;
-    height: 230px;
-    top: 20px;
-    right: 15%;
-    transform: rotate(3deg);
+    width: 170px;
+    height: 210px;
+    top: 10px;
+    right: 10%;
   }
 
   .edu-photo-2 {
-    width: 180px;
-    height: 210px;
-    bottom: 20px;
-    left: 15%;
-    transform: rotate(-5deg);
+    width: 150px;
+    height: 190px;
+    bottom: 10px;
+    left: 10%;
   }
 }
