@@ -324,10 +324,10 @@ button {
   display: block;
 }
 
-/* Yellow background highlight - like reference */
+/* Yellow background highlight - bottom half like highlighter marker */
 .hero-line.highlight {
   display: inline;
-  background: var(--yellow);
+  background: linear-gradient(to top, var(--yellow) 50%, transparent 50%);
   color: var(--black);
   font-style: italic;
   padding: 0 0.1em;
