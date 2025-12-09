@@ -703,7 +703,6 @@ button {
 
 .achievements-header {
   padding: var(--space-lg) var(--space-md);
-  background: var(--black);
   text-align: center;
 }
 
@@ -1048,7 +1047,8 @@ button {
 
 .leadership-card {
   padding: var(--space-md);
-  background: var(--gray-light);
+  background: var(--gray-dark);
+  border: 1px solid var(--gray-border);
   border-radius: 0;
   /* Sharp corners - Qrates style */
   transition: all var(--duration) var(--ease);
@@ -1056,7 +1056,8 @@ button {
 
 .leadership-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 40px rgba(226, 128, 255, 0.2);
+  border-color: var(--purple);
 }
 
 .leadership-card h4 {
@@ -1078,19 +1079,52 @@ button {
 }
 
 /* ===============================================
-   SKILLS SECTION (BLACK)
+   SKILLS SECTION (WHITE) - Qrates Card Style
    =============================================== */
 .skills-section {
   padding: var(--space-xl) var(--space-md);
+  border-top: 3px solid var(--yellow);
 }
 
 .skills-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 .skills-header {
-  margin-bottom: var(--space-lg);
+  text-align: center;
+  margin-bottom: var(--space-xl);
+}
+
+.skills-header .section-number {
+  display: inline-block;
+  background: var(--purple);
+  color: var(--black);
+  padding: 0.3rem 0.8rem;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+
+.skills-header .section-title {
+  margin-bottom: var(--space-sm);
+}
+
+/* Yellow background highlight on title with border and shadow - like reference */
+.title-highlight {
+  background: var(--yellow);
+  color: var(--black);
+  padding: 0.3em 0.8em;
+  display: inline-block;
+  border: 3px solid var(--black);
+  box-shadow: 6px 6px 0 0 var(--black);
+  font-weight: 900;
+}
+
+.skills-subtitle {
+  font-size: 1.1rem;
+  color: var(--gray);
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .skills-grid {
@@ -1099,36 +1133,62 @@ button {
   gap: var(--space-md);
 }
 
-.skill-group h4 {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--purple);
-  margin-bottom: var(--space-sm);
-}
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xs);
-}
-
-.skill-tags span {
-  padding: 0.5rem 1rem;
-  background: var(--gray-dark);
-  border: 1px solid var(--gray-border);
-  border-radius: 0;
-  /* Sharp corners - Qrates style */
-  font-size: 0.875rem;
-  color: var(--white);
+/* Skill Card - Reference Style */
+.skill-card {
+  background: var(--white);
+  border: 2px solid var(--black);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
   transition: all var(--duration) var(--ease);
+  position: relative;
 }
 
-.skill-tags span:hover {
-  background: var(--yellow);
-  border-color: var(--yellow);
+.skill-card:hover {
+  transform: translateY(-4px) translateX(-2px);
+}
+
+/* Color variations with offset shadow bar */
+.skill-card-magenta {
+  box-shadow: 6px 6px 0 0 var(--purple);
+}
+
+.skill-card-yellow {
+  box-shadow: 6px 6px 0 0 var(--yellow);
+}
+
+.skill-card-black {
+  box-shadow: 6px 6px 0 0 var(--olive);
+}
+
+.skill-card-dark {
+  box-shadow: 6px 6px 0 0 var(--gray-dark);
+}
+
+.skill-icon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--space-sm);
+}
+
+.skill-icon svg,
+.skill-icon img {
+  width: 100%;
+  height: 100%;
+  fill: var(--black);
+  object-fit: contain;
+}
+
+.skill-card h4 {
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--black);
+  margin-bottom: var(--space-xs);
+}
+
+.skill-description {
+  font-size: 0.85rem;
+  color: var(--gray);
+  line-height: 1.6;
 }
 
 /* ===============================================
@@ -1206,6 +1266,20 @@ button {
 .education-year {
   font-size: 1rem;
   color: var(--gray);
+}
+
+/* Leadership & Activities within Education */
+.education-activities {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--gray-border);
+}
+
+.activities-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--yellow);
+  margin-bottom: var(--space-md);
 }
 
 /* Scattered Photo Gallery */
