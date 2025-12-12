@@ -4,12 +4,53 @@
    =============================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initSplashScreen();
     initAccordions();
     initProjectFilter();
     initSmoothScroll();
     initNavScroll();
     initScrollAnimations();
 });
+
+/**
+ * Splash Screen - Fun Intro
+ */
+function initSplashScreen() {
+    const splashScreen = document.getElementById('splash-screen');
+    const enterBtn = document.getElementById('enter-btn');
+
+    if (!splashScreen || !enterBtn) return;
+
+    // Prevent scrolling while splash is visible
+    document.body.style.overflow = 'hidden';
+
+    // Handle enter button click
+    enterBtn.addEventListener('click', () => {
+        hideSplashScreen(splashScreen);
+    });
+
+    // Also allow pressing Enter or Space to dismiss
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape') {
+            if (!splashScreen.classList.contains('hiding')) {
+                hideSplashScreen(splashScreen);
+            }
+        }
+    });
+}
+
+function hideSplashScreen(splashScreen) {
+    // Add hiding class for fade animation
+    splashScreen.classList.add('hiding');
+
+    // Re-enable scrolling
+    document.body.style.overflow = '';
+
+    // Remove splash screen from DOM after animation
+    setTimeout(() => {
+        splashScreen.classList.add('hidden');
+    }, 800);
+}
 
 /**
  * Process Accordions - Qrates Style

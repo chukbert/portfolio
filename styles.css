@@ -1805,3 +1805,232 @@ button {
     left: 10%;
   }
 }
+
+/* ===============================================
+   SPLASH SCREEN - Fun Intro
+   =============================================== */
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  overflow: hidden;
+}
+
+.splash-screen.hiding {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.splash-screen.hidden {
+  display: none;
+}
+
+/* Background pattern */
+.splash-bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(circle at 20% 20%, var(--purple) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, var(--yellow) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  animation: patternDrift 20s linear infinite;
+}
+
+@keyframes patternDrift {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(60px, 60px);
+  }
+}
+
+/* Content container */
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+  animation: contentFloat 3s ease-in-out infinite;
+}
+
+@keyframes contentFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Photo wrapper with effects */
+.splash-photo-wrapper {
+  position: relative;
+  margin-bottom: var(--space-md);
+}
+
+.splash-photo {
+  width: 340px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 4px solid var(--yellow);
+  box-shadow:
+    0 20px 60px rgba(255, 248, 4, 0.3),
+    8px 8px 0 0 var(--purple);
+  animation: photoWobble 4s ease-in-out infinite;
+}
+
+@keyframes photoWobble {
+
+  0%,
+  100% {
+    transform: rotate(-2deg) scale(1);
+  }
+
+  25% {
+    transform: rotate(1deg) scale(1.02);
+  }
+
+  50% {
+    transform: rotate(-1deg) scale(1);
+  }
+
+  75% {
+    transform: rotate(2deg) scale(1.01);
+  }
+}
+
+/* Text styling */
+.splash-text {
+  margin-bottom: var(--space-lg);
+}
+
+.splash-greeting {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: var(--space-xs);
+  letter-spacing: -0.02em;
+  animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+
+  0%,
+  100% {
+    text-shadow: 0 0 20px rgba(255, 248, 4, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 40px rgba(255, 248, 4, 0.6);
+  }
+}
+
+.splash-tagline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--gray);
+  font-weight: 500;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Enter button */
+.splash-enter-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 1rem 2.5rem;
+  background: var(--yellow);
+  color: var(--black);
+  border: 3px solid var(--black);
+  border-radius: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  box-shadow: 4px 4px 0 0 var(--purple);
+}
+
+.splash-enter-btn:hover {
+  background: var(--purple);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--yellow);
+}
+
+.splash-enter-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--purple);
+}
+
+.splash-enter-btn svg {
+  transition: transform 0.3s var(--ease);
+}
+
+.splash-enter-btn:hover svg {
+  transform: translateX(5px);
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .splash-photo {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+  .splash-photo {
+    width: 260px;
+    height: 260px;
+    border-radius: 20px;
+  }
+
+  .splash-enter-btn {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+  .splash-photo {
+    width: 220px;
+    height: 220px;
+    border-radius: 16px;
+    border-width: 3px;
+  }
+
+  .splash-text {
+    margin-bottom: var(--space-md);
+  }
+
+  .splash-tagline {
+    max-width: 280px;
+    padding: 0 var(--space-sm);
+  }
+
+  .splash-enter-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
