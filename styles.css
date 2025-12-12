@@ -1390,27 +1390,43 @@ button {
   margin-bottom: var(--space-lg);
 }
 
-.cta-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 16px;
+.cta-solo-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border: 3px solid var(--yellow);
+  box-shadow: 6px 6px 0 0 var(--purple);
   animation: cta-float 3s ease-in-out infinite;
+  transition: all 0.3s ease;
 }
 
-.cta-image-1 {
-  background: linear-gradient(135deg, var(--yellow), var(--olive));
-  animation-delay: 0s;
+.cta-solo-image:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 8px 8px 0 0 var(--yellow);
+  border-color: var(--purple);
 }
 
-.cta-image-2 {
-  background: linear-gradient(135deg, var(--purple), var(--yellow));
-  animation-delay: -1s;
-  transform: translateY(-20px);
+/* Responsive Solo image */
+@media (max-width: 768px) {
+  .cta-solo-image {
+    max-width: 350px;
+    box-shadow: 4px 4px 0 0 var(--purple);
+  }
+
+  .cta-solo-image:hover {
+    box-shadow: 6px 6px 0 0 var(--yellow);
+  }
 }
 
-.cta-image-3 {
-  background: linear-gradient(135deg, var(--olive), var(--purple));
-  animation-delay: -2s;
+@media (max-width: 480px) {
+  .cta-solo-image {
+    max-width: 280px;
+    border-width: 2px;
+  }
+}
+
+.cta-images {
+  margin-bottom: var(--space-md);
 }
 
 @keyframes cta-float {
@@ -1426,7 +1442,7 @@ button {
 }
 
 .cta-title {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: var(--space-md);
@@ -1536,6 +1552,7 @@ button {
   color: var(--purple);
 }
 
+
 /* ===============================================
    RESPONSIVE
    =============================================== */
@@ -1559,6 +1576,7 @@ button {
     grid-template-columns: 1fr;
     gap: var(--space-md);
   }
+
 
   .skills-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1626,6 +1644,7 @@ button {
   .nav-links {
     display: none;
   }
+
 
   .hero {
     padding: calc(var(--space-lg) + 60px) var(--space-sm) var(--space-lg);
@@ -1891,7 +1910,7 @@ button {
   width: 340px;
   height: 340px;
   object-fit: cover;
-  border-radius: 24px;
+  border-radius: 0;
   border: 4px solid var(--yellow);
   box-shadow:
     0 20px 60px rgba(255, 248, 4, 0.3),
@@ -2002,7 +2021,6 @@ button {
   .splash-photo {
     width: 260px;
     height: 260px;
-    border-radius: 20px;
   }
 
   .splash-enter-btn {
@@ -2016,7 +2034,6 @@ button {
   .splash-photo {
     width: 220px;
     height: 220px;
-    border-radius: 16px;
     border-width: 3px;
   }
 
