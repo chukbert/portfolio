@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initSplashScreen();
     initAccordions();
+    initProjectAccordions();
     initProjectFilter();
     initSmoothScroll();
     initNavScroll();
@@ -86,11 +87,38 @@ function initAccordions() {
 }
 
 /**
+ * Project Accordions - For Featured Projects Section
+ */
+function initProjectAccordions() {
+    const projectAccordions = document.querySelectorAll('.project-accordion');
+
+    projectAccordions.forEach(accordion => {
+        const trigger = accordion.querySelector('.project-accordion-trigger');
+
+        trigger.addEventListener('click', () => {
+            const isActive = accordion.classList.contains('active');
+
+            // Close all project accordions
+            projectAccordions.forEach(acc => {
+                acc.classList.remove('active');
+                acc.querySelector('.project-accordion-trigger').setAttribute('aria-expanded', 'false');
+            });
+
+            // Toggle current if it wasn't active
+            if (!isActive) {
+                accordion.classList.add('active');
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+}
+
+/**
  * Project Filter Toggles
  */
 function initProjectFilter() {
     const toggleBtns = document.querySelectorAll('.toggle-btn');
-    const projects = document.querySelectorAll('.project-card');
+    const projects = document.querySelectorAll('.project-accordion');
 
     toggleBtns.forEach(btn => {
         btn.addEventListener('click', () => {

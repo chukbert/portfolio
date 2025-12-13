@@ -1024,6 +1024,106 @@ button {
 }
 
 /* ===============================================
+   PROJECTS ACCORDION STYLES (BLACK)
+   =============================================== */
+.projects-accordions {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-accordion {
+  border-bottom: 1px solid var(--gray-border);
+}
+
+.project-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  background: transparent;
+  border: none;
+  color: inherit;
+  text-align: left;
+  transition: all var(--duration) var(--ease);
+}
+
+.project-accordion-trigger:hover {
+  padding-left: var(--space-sm);
+}
+
+.project-accordion-trigger:hover .project-date {
+  color: var(--yellow);
+}
+
+.project-date {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--gray);
+  min-width: 80px;
+  transition: color var(--duration) var(--ease);
+}
+
+.project-title {
+  flex: 1;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.project-highlights {
+  display: flex;
+  gap: var(--space-xs);
+  flex-wrap: wrap;
+}
+
+.highlight-tag {
+  padding: 0.25rem 0.75rem;
+  background: var(--yellow);
+  color: var(--black);
+  border-radius: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.project-accordion .accordion-arrow {
+  transition: transform var(--duration) var(--ease);
+  color: var(--gray);
+}
+
+.project-accordion.active .accordion-arrow {
+  transform: rotate(180deg);
+  color: var(--yellow);
+}
+
+.project-accordion-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease);
+}
+
+.project-accordion.active .project-accordion-panel {
+  max-height: 300px;
+}
+
+.project-accordion-content {
+  padding: 0 0 var(--space-md) 100px;
+}
+
+.project-accordion-content p {
+  color: var(--gray);
+  margin-bottom: var(--space-sm);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.project-accordion-content .project-stack {
+  margin-top: var(--space-sm);
+}
+
+/* ===============================================
    LEADERSHIP SECTION (WHITE)
    =============================================== */
 .leadership-section {
@@ -1781,6 +1881,43 @@ button {
 
   .projects-grid-cards {
     grid-template-columns: 1fr;
+  }
+
+  /* Project Accordion Mobile */
+  .project-accordion-trigger {
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .project-date {
+    min-width: 70px;
+    font-size: 0.75rem;
+  }
+
+  .project-title {
+    font-size: 1rem;
+    flex-basis: 100%;
+    order: 3;
+    margin-top: var(--space-xs);
+  }
+
+  .project-highlights {
+    flex-basis: auto;
+    order: 2;
+    flex-wrap: nowrap;
+  }
+
+  .highlight-tag {
+    font-size: 0.6rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .project-accordion-content {
+    padding-left: var(--space-sm);
+  }
+
+  .project-accordion-content p {
+    font-size: 0.875rem;
   }
 
   .skills-grid {
