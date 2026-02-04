@@ -14,6 +14,7 @@
         initScrollAnimations();
         initSmoothScroll();
         initPricingCalculator();
+        initWhatsAppLinks();
     });
 
     // ==========================================================================
@@ -331,6 +332,29 @@
 
         // Initial calculation
         updateCalculation();
+    }
+
+    // ==========================================================================
+    // WhatsApp Links
+    // ==========================================================================
+    function initWhatsAppLinks() {
+        var waLinks = document.querySelectorAll('.wa-link');
+        var phoneNumber = '6282123300362';
+
+        var messages = {
+            en: "Hi, I'd like to explore an AI Proof of Concept for my use case. Let's discuss!",
+            id: "Halo, saya ingin mencoba AI Proof of Concept untuk kebutuhan saya. Mari diskusikan!"
+        };
+
+        waLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                var currentLang = document.documentElement.lang || 'en';
+                var message = messages[currentLang] || messages.en;
+                var waUrl = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
+                window.open(waUrl, '_blank');
+            });
+        });
     }
 
 })();
