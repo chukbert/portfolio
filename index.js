@@ -13,6 +13,7 @@
         initFAQAccordion();
         initScrollAnimations();
         initSmoothScroll();
+        initPricingCalculator();
     });
 
     // ==========================================================================
@@ -209,6 +210,127 @@
                 history.pushState(null, '', href);
             });
         });
+    }
+
+    // ==========================================================================
+    // Pricing Calculator
+    // ==========================================================================
+    function initPricingCalculator() {
+        const trigger = document.getElementById('calculatorTrigger');
+        const calculator = document.getElementById('pricingCalculator');
+        const closeBtn = document.getElementById('calculatorClose');
+
+        if (!trigger || !calculator) return;
+
+        // Pricing configuration (in IDR)
+        const pricing = {
+            base: 3000000, // Rp 3 juta base
+            dataset: {
+                small: 0,
+                medium: 1500000,
+                large: 3000000
+            },
+            datatype: {
+                tabular: 0,
+                image: 2000000,
+                text: 1500000,
+                mixed: 3500000
+            },
+            model: {
+                classic: 0,
+                deep: 5000000,
+                llm: 12000000
+            },
+            iterations: {
+                basic: 0,
+                standard: 2000000,
+                extensive: 5000000
+            },
+            compute: {
+                // GPU hours estimate × rate
+                classic: { small: 50000, medium: 100000, large: 200000 },
+                deep: { small: 300000, medium: 800000, large: 1500000 },
+                llm: { small: 500000, medium: 1500000, large: 3000000 }
+            }
+        };
+
+        // State
+        let state = {
+            dataset: 'small',
+            datatype: 'tabular',
+            model: 'classic',
+            iterations: 'basic'
+        };
+
+        // Toggle calculator
+        trigger.addEventListener('click', function () {
+            calculator.classList.toggle('active');
+            calculator.setAttribute('aria-hidden', !calculator.classList.contains('active'));
+
+            if (calculator.classList.contains('active')) {
+                calculator.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+
+        // Close button
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function () {
+                calculator.classList.remove('active');
+                calculator.setAttribute('aria-hidden', 'true');
+            });
+        }
+
+        // Option buttons
+        const optionGroups = calculator.querySelectorAll('.calc-options');
+        optionGroups.forEach(function (group) {
+            const calcType = group.getAttribute('data-calc');
+            const buttons = group.querySelectorAll('.calc-option');
+
+            buttons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    // Update active state
+                    buttons.forEach(function (b) { b.classList.remove('active'); });
+                    btn.classList.add('active');
+
+                    // Update state
+                    state[calcType] = btn.getAttribute('data-value');
+
+                    // Recalculate
+                    updateCalculation();
+                });
+            });
+        });
+
+        function updateCalculation() {
+            // Calculate components
+            const baseCost = pricing.base;
+            const datasetCost = pricing.dataset[state.dataset] || 0;
+            const datatypeCost = pricing.datatype[state.datatype] || 0;
+            const modelCost = pricing.model[state.model] || 0;
+            const iterationsCost = pricing.iterations[state.iterations] || 0;
+
+            // Compute cost based on model and dataset
+            const computeCost = pricing.compute[state.model]?.[state.dataset] || 0;
+
+            // Complexity is datatype + iterations
+            const complexityCost = datatypeCost + iterationsCost;
+
+            // Total = base + dataset + model + compute + complexity
+            const totalCost = baseCost + datasetCost + modelCost + computeCost + complexityCost;
+
+            // Update display
+            document.getElementById('calcBase').textContent = formatRupiah(baseCost + datasetCost + modelCost);
+            document.getElementById('calcCompute').textContent = formatRupiah(computeCost);
+            document.getElementById('calcComplexity').textContent = formatRupiah(complexityCost);
+            document.getElementById('calcTotal').textContent = formatRupiah(totalCost);
+        }
+
+        function formatRupiah(amount) {
+            return 'Rp ' + amount.toLocaleString('id-ID');
+        }
+
+        // Initial calculation
+        updateCalculation();
     }
 
 })();
