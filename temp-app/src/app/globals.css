@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=IBM+Plex+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+/* =============================================================================
+ * HASQUE-INSPIRED DARK PORTFOLIO SYSTEM
+ * Portfolio: Faiz Muhammad Muflich
+ * Theme: Dark Minimalism — generous whitespace, bold type, rounded cards
+ * =============================================================================
+ */
+
+:root {
+  /* ── PALETTE (retained) ────────────────────────────────── */
+  --ink: #0E0D0A;
+  /* Near-black, warm toned */
+  --bone: #F5F2EC;
+  /* Warm off-white */
+  --bone-dark: #EAE5DC;
+  /* Slightly deeper bone */
+  --vermillion: #D4321C;
+  /* The signal color */
+  --brass: #B8975A;
+  /* Warm metallic accent */
+  --fog: #3F3D3A;
+  /* Body text — strong contrast on bone */
+  --fog-dark: #252422;
+  /* Darkest secondary — near ink */
+  --rule: #2A2926;
+  /* Dark rule lines */
+  --rule-light: #C8C2B8;
+  /* Light rule dividers */
+  --surface: #EDEAE3;
+  /* Card surface on light bg */
+  --surface-2: #E4E0D8;
+  /* Slightly deeper surface */
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────────── */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Archivo', Helvetica, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  /* ── SHAPE ──────────────────────────────────────────────── */
+  --radius-card: 20px;
+  --radius-sm: 10px;
+
+  /* ── MOTION ─────────────────────────────────────────────── */
+  --ease-press: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-sharp: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-mid: 280ms;
+  --dur-slow: 560ms;
+  --dur-long: 900ms;
+}
+
+@theme inline {
+  --color-ink: var(--ink);
+  --color-bone: var(--bone);
+  --color-bone-dark: var(--bone-dark);
+  --color-vermillion: var(--vermillion);
+  --color-brass: var(--brass);
+  --color-fog: var(--fog);
+  --color-fog-dark: var(--fog-dark);
+  --color-rule: var(--rule);
+  --color-rule-light: var(--rule-light);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* =============================================================================
+ * RESET & BASE
+ * =============================================================================
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 17px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bone);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* =============================================================================
+ * TYPOGRAPHY
+ * =============================================================================
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-body);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+}
+
+/* =============================================================================
+ * SELECTION & SCROLLBAR
+ * =============================================================================
+ */
+
+::selection {
+  background: var(--vermillion);
+  color: var(--bone);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bone);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--rule-light);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vermillion);
+}
+
+/* =============================================================================
+ * LAYOUT
+ * =============================================================================
+ */
+
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+}
+
+/* =============================================================================
+ * NOISE OVERLAY
+ * =============================================================================
+ */
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
+
+/* =============================================================================
+ * CARD
+ * =============================================================================
+ */
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: transform var(--dur-mid) var(--ease-press),
+    box-shadow var(--dur-mid) var(--ease-press);
+  border: 1px solid var(--rule-light);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(14, 13, 10, 0.12);
+}
+
+/* =============================================================================
+ * ENTRY ANIMATIONS
+ * =============================================================================
+ */
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up var(--dur-long) var(--ease-press) both;
+}
+
+.animate-fade {
+  animation: fade-in var(--dur-long) var(--ease-press) both;
+}
+
+.stagger-1 {
+  animation-delay: 0.1s;
+}
+
+.stagger-2 {
+  animation-delay: 0.22s;
+}
+
+.stagger-3 {
+  animation-delay: 0.36s;
+}
+
+.stagger-4 {
+  animation-delay: 0.52s;
+}
+
+.stagger-5 {
+  animation-delay: 0.70s;
+}
+
+.stagger-6 {
+  animation-delay: 0.90s;
+}
+
+/* =============================================================================
+ * LINK
+ * =============================================================================
+ */
+
+.link-underline {
+  position: relative;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-mid) var(--ease-sharp);
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* =============================================================================
+ * TICKER
+ * =============================================================================
+ */
+
+.ticker-track {
+  display: flex;
+  gap: 0;
+  animation: ticker 24s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* =============================================================================
+ * CUSTOM CURSOR
+ * =============================================================================
+ */
+
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--vermillion);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width var(--dur-fast) var(--ease-press),
+    height var(--dur-fast) var(--ease-press);
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width var(--dur-mid) var(--ease-press),
+    height var(--dur-mid) var(--ease-press),
+    opacity var(--dur-mid) var(--ease-press);
+}
+
+/* Hide custom cursor on touch / coarse-pointer devices */
+@media (hover: none),
+(pointer: coarse) {
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
+/* =============================================================================
+ * FOCUS-VISIBLE (Accessibility)
+ * =============================================================================
+ */
+
+*:focus-visible {
+  outline: 2px solid var(--vermillion);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* =============================================================================
+ * INTERACTIVE LINK / BUTTON HOVER CLASSES
+ * =============================================================================
+ */
+
+.btn-primary {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--bone);
+  background: var(--ink);
+  padding: 0.85rem 2rem;
+  border-radius: 100px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background var(--dur-mid) var(--ease-sharp),
+    transform var(--dur-fast) var(--ease-press);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--vermillion);
+}
+
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+.btn-ghost {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--fog);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color var(--dur-mid) var(--ease-sharp);
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  color: var(--ink);
+}
+
+.btn-light {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--bone);
+  padding: 0.9rem 2.25rem;
+  border-radius: 100px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background var(--dur-mid) var(--ease-sharp),
+    color var(--dur-mid) var(--ease-sharp),
+    transform var(--dur-fast) var(--ease-press);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-light:hover {
+  background: var(--vermillion);
+  color: var(--bone);
+}
+
+.btn-light:active {
+  transform: scale(0.97);
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fog);
+  text-decoration: none;
+  transition: color var(--dur-mid) var(--ease-sharp);
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+}
+
+.nav-btn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--bone);
+  background: var(--ink);
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background var(--dur-mid) var(--ease-sharp),
+    transform var(--dur-fast) var(--ease-press);
+  cursor: pointer;
+  border: none;
+}
+
+.nav-btn:hover {
+  background: var(--vermillion);
+}
+
+.nav-btn:active {
+  transform: scale(0.97);
+}
+
+/* =============================================================================
+ * REDUCED MOTION (Accessibility)
+ * =============================================================================
+ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .ticker-track {
+    animation: none !important;
+  }
+}
+
+/* =============================================================================
+ * RESPONSIVE UTILITIES
+ * =============================================================================
+ */
+
+/* Responsive card image container */
+.card-image {
+  position: relative;
+  height: clamp(180px, 28vw, 260px);
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+@media (max-width: 480px) {
+  .card-image {
+    height: 200px;
+  }
+}
+
+/* Mobile stack utility */
+@media (max-width: 400px) {
+  .mobile-stack {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+}
