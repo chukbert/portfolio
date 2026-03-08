@@ -38,34 +38,28 @@ const projects: Project[] = [
     image: "/images/paham-pajak/thumbnail.png", href: "/paham-pajak"
   },
   {
-    id: 4, slug: "04", title: "KOMA: Mental Health Companion", subtitle: "Safe Space & AI Empathy",
-    company: "Ongoing Project", year: "2025", tags: ["Next.js 14", "FastAPI", "LLM", "Docker"],
-    description: "Virtual companion with a focus on empathy, featuring cathartic release animations, grounding techniques, and supportive AI interactions.",
-    image: "/images/koma_with_bg.png",
+    id: 4, slug: "04", title: "KOMATE", subtitle: "AI Empathy & Safe Space",
+    company: "Mental Health Companion", year: "2025", tags: ["React Native", "Expo", "FastAPI", "Lottie"],
+    description: "Mobile-first mental health companion featuring high-performance Skia grounding visuals, cathartic Lottie animations, and an empathetic AI advisor.",
+    image: "/images/koma_with_bg.png", href: "/komate"
   },
   {
-    id: 5, slug: "05", title: "Growth Chart Plotter", subtitle: "CDC & WHO Standard Visualisation",
-    company: "Healthcare SaaS", year: "2025", tags: ["CDC/WHO", "Z-Score", "React", "TypeScript"],
-    description: "Clinical growth chart application with z-score interpretation and multi-visit trend overlays for paediatric clinicians.",
-    image: "/images/Gemini_Generated_Image_ubsaxyubsaxyubsa.png",
-  },
-  {
-    id: 6, slug: "06", title: "Clinic Management Platform", subtitle: "RBAC + WhatsApp Patient Portal",
+    id: 5, slug: "05", title: "Clinic Management Platform", subtitle: "RBAC + WhatsApp Patient Portal",
     company: "Hagia Pediatric", year: "2025", tags: ["JWT", "Audit Log", "WhatsApp API", "NestJS"],
     description: "Pediatric clinic management system with role-based access control, secure patient portals, and prepaid deposit tracking.",
-    image: "/images/closeup.png",
+    image: "/images/hagia/thumbnail.png", href: "https://hagia.muflichlabs.online/"
   },
   {
-    id: 7, slug: "07", title: "ETL Pipeline Orchestration", subtitle: "Airflow + NiFi Data Workflows",
+    id: 6, slug: "06", title: "ETL Pipeline Orchestration", subtitle: "Airflow + NiFi Data Workflows",
     company: "Xquisite AI", year: "2025", tags: ["Apache Airflow", "NiFi", "Snowflake", "Python"],
     description: "Automated ETL workflows for cross-cloud data extraction and transformation with modular logging and retry logic.",
-    image: "/images/hero-portrait.jpg",
+    image: "/images/xquisite/thumbnail.png", href: "https://xquisite.ai/"
   },
   {
-    id: 8, slug: "08", title: "ML Pipeline Infrastructure", subtitle: "CI/CD + Cloud Deployment",
+    id: 7, slug: "07", title: "ML Pipeline Infrastructure", subtitle: "CI/CD + Cloud Deployment",
     company: "Pusat AI ITB", year: "2024", tags: ["MLOps", "GitHub Actions", "FastAPI", "GCP"],
     description: "End-to-end ML pipelines for enterprise projects with optimized feature engineering and automated CI/CD deployment.",
-    image: "/images/arak.jpeg",
+    image: "/images/pusat-ai-itb/thumbnail.png", href: "https://itb.ac.id/pusat-artificial-intelligence"
   },
 ];
 
@@ -74,9 +68,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const inView = useInView(ref, { once: true, margin: "-6%" });
   const reduced = useReducedMotion();
 
-  const CardWrapper = project.href ? Link : "div";
+  const isExternal = project.href?.startsWith("http");
+  const CardWrapper = project.href ? (isExternal ? "a" : Link) : "div";
   const wrapperProps = project.href
-    ? { href: project.href, style: { textDecoration: "none", color: "inherit", display: "block" } }
+    ? {
+      href: project.href,
+      style: { textDecoration: "none", color: "inherit", display: "block" },
+      ...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})
+    }
     : {};
 
   return (
