@@ -23,7 +23,7 @@ const projects: Project[] = [
     id: 1, slug: "01", title: "Creator Pulse", subtitle: "AI-Augmented Analytics & Storefront",
     company: "Personal Project", year: "2026", tags: ["Elixir", "Phoenix", "Nuxt 3", "Claude Code"],
     description: "High-concurrency digital storefront and analytics platform with an autonomous Text-to-SQL AI agent and in-memory query caching.",
-    image: "/images/creator_pulse.png",
+    image: "/images/creator-pulse/thumbnail.png", href: "/creator-pulse"
   },
   {
     id: 2, slug: "02", title: "Enterprise EHR Platform", subtitle: "Clinical Decision AI + SATUSEHAT",
