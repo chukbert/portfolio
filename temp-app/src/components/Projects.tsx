@@ -35,7 +35,7 @@ const projects: Project[] = [
     id: 3, slug: "03", title: "AI Tax Consultation", subtitle: "RAG-powered Tax Assistant",
     company: "Paham Pajak", year: "2026", tags: ["Gemini API", "RAG", "Drizzle", "Redis"],
     description: "Indonesian tax consultation platform with AI-powered chat using Google Gemini and RAG over 2023-2026 tax regulations.",
-    image: "/images/artificial-intelligence-14089.svg",
+    image: "/images/paham-pajak/thumbnail.png", href: "/paham-pajak"
   },
   {
     id: 4, slug: "04", title: "KOMA: Mental Health Companion", subtitle: "Safe Space & AI Empathy",
