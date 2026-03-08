@@ -123,7 +123,7 @@ export default function CreatorPulseShowcase() {
                                     fontSize: "clamp(1rem, 1.8vw, 1.2rem)", color: "var(--fog)", maxWidth: "52ch",
                                     lineHeight: 1.72, marginBottom: "2.5rem",
                                 }}>
-                                    An AI-augmented storefront and analytics platform built primarily to demonstrate mastery of <strong>Scalev's expected tech stack</strong>. Features a high-concurrency <strong>Elixir/Phoenix backend</strong>, Nuxt 3 SSR storefront, Vue 3 SPA dashboard, and an autonomous <strong>Text-to-SQL AI consultant</strong>.
+                                    An AI-augmented storefront and analytics platform engineered to showcase a robust e-commerce architecture. Features a high-concurrency <strong>Elixir/Phoenix backend</strong>, Nuxt 3 SSR storefront, Vue 3 SPA dashboard, and an autonomous <strong>Text-to-SQL AI consultant</strong>.
                                 </motion.p>
 
                                 <motion.div variants={fadeInUp}>
@@ -278,7 +278,7 @@ export default function CreatorPulseShowcase() {
                             Technology
                         </span>
                         <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, letterSpacing: "-0.035em", lineHeight: 1.05, color: "var(--ink)" }}>
-                            Scalev-Aligned Tech Stack
+                            Core Technologies
                         </h2>
                     </motion.div>
 
@@ -312,10 +312,10 @@ export default function CreatorPulseShowcase() {
                             Explore
                         </span>
                         <h2 style={{ fontSize: "clamp(2.5rem, 4.5vw, 4rem)", fontWeight: 800, letterSpacing: "-0.035em", lineHeight: 1.05, color: "var(--ink)", marginBottom: "1.25rem", maxWidth: "18ch", margin: "0 auto 1.25rem" }}>
-                            Demonstrated Mastery
+                            Architecture & Implementation
                         </h2>
                         <p style={{ fontSize: "1.1rem", color: "var(--fog)", marginBottom: "3rem", maxWidth: "52ch", margin: "0 auto 3rem", lineHeight: 1.72 }}>
-                            Creator Pulse demonstrates a rigorous understanding of Scalev's core technologies — Elixir, Nuxt, and Vue — integrated with cutting-edge AI architectures.
+                            Creator Pulse was built to explore highly concurrent backends, modern SSR frameworks, and cutting-edge AI integrations in an e-commerce context.
                         </p>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem", justifyContent: "center" }}>
                             <a href="https://github.com/chukbert/creator-pulse" target="_blank" rel="noopener noreferrer" className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
